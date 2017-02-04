@@ -4,11 +4,11 @@ file=$1
 
 if [[ $file =~ \.gz$ ]]
 then
-  MD_OUT=($(gunzip -c $file | md5sum))
+  SHA_OUT=($(gunzip -c $file | sha256sum))
 else
-  MD_OUT=($(md5sum $file))
+  SHA_OUT=($(sha256sum $file))
 fi
 
-MD=${MD_OUT[0]}
-echo "$MD" >> report
+SHA=${SHA_OUT[0]}
+echo "$SHA" >> report
 
